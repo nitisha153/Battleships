@@ -31,6 +31,7 @@ def makeModel(data):
     data["cell size"] = data["board size"]/data["no.of rows"]
     data["numShips"]=5
     data["no.of boards"] = 2
+    data["track ships"] = 0
     data["temporary"] = test.testShip()
     data["computer"] = emptyGrid(data["no.of rows"],data["no.of cols"])
     data["user"] = emptyGrid(data["no.of rows"],data["no.of cols"])
@@ -242,6 +243,7 @@ def placeShip(data):
             x = data["temporary"][row][0]
             y = data["temporary"][row][1]
             data["user"][x][y] = SHIP_UNCLICKED
+        data["track ships"] += 1
     else:
         print("Ship is not Valid")
     data["temporary"] = []
@@ -254,7 +256,18 @@ Parameters: dict mapping strs to values ; int ; int
 Returns: None
 '''
 def clickUserBoard(data, row, col):
-    return
+    if data["track ships"] == 5:
+        print("Start playing the game")
+        return
+    for coordinates in data["temporary"]:
+        if coordinates == [row,col]:
+            return
+        else:
+            data["temporary"].append([row,col])
+    if len(data["temporary"]) == 3:
+        placeShip(data)
+      
+    return None
 
 
 ### WEEK 3 ###
