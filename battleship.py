@@ -226,7 +226,9 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def shipIsValid(grid, ship):
-    return
+    if len(ship) == 3 and checkShip(grid, ship) and isVertical(ship) or isHorizontal(ship):
+        return True
+    return False
 
 
 '''
@@ -358,6 +360,7 @@ if __name__ == "__main__":
     #test.testIsVertical()
     #test.testIsHorizontal()
     #test.testGetClickedCell()
-    test.testDrawShip()
+    #test.testDrawShip()
+    test.testShipIsValid()
     ## Finally, run the simulation to test it manually ##
-    runSimulation(500, 500)
+    #runSimulation(500, 500)
