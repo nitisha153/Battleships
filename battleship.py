@@ -237,6 +237,14 @@ Parameters: dict mapping strs to values
 Returns: None
 '''
 def placeShip(data):
+    if shipIsValid(data["user"],data["temporary"]):
+        for row in range(len(data["temporary"])):
+            x = data["temporary"][row][0]
+            y = data["temporary"][row][1]
+            data["user"][x][y] = SHIP_UNCLICKED
+    else:
+        print("Ship is not Valid")
+    data["temporary"] = []
     return
 
 
