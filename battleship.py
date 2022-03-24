@@ -62,7 +62,9 @@ Parameters: dict mapping strs to values ; key event object
 Returns: None
 '''
 def keyPressed(data, event):
-    pass
+    if event.char == "r":
+        makeModel(data)
+
 
 
 '''
@@ -315,7 +317,7 @@ Parameters: dict mapping strs to values ; int ; int
 Returns: None
 '''
 def runGameTurn(data, row, col):
-    if data["computer"][row][col] == (SHIP_UNCLICKED or SHIP_CLICKED):
+    if data["computer"][row][col] == EMPTY_CLICKED or data["computer"][row][col] == SHIP_CLICKED:
         return
     else:
         updateBoard(data,data["computer"],row,col,"user")
@@ -364,11 +366,13 @@ Returns: None
 def drawGameOver(data, canvas):
     if data["winner"] == "user":
         canvas.create_text(300,50, text = "You Won!", fill ="purple", font = ("Georgia 20 bold"))
+        canvas.create_text(300,50, text = "Press Enter to restart", fill ="red", font = ("Georgia 20 bold"))
     elif data["winner"] == "comp":
         canvas.create_text(300,50, text = "You Lost!", fill ="red", font = ("Georgia 20 bold"))
+        canvas.create_text(300,50, text = "Press Enter to restart", fill ="red", font = ("Georgia 20 bold"))
     elif data["winner"] == "draw":
         canvas.create_text(300,50, text = "It's a Draw! Out of moves.", fill ="red", font = ("Georgia 20 bold"))
-    canvas.create_text(300,50, text = "Press Enter to restart", fill ="red", font = ("Georgia 20 bold"))
+        canvas.create_text(300,50, text = "Press Enter to restart", fill ="red", font = ("Georgia 20 bold"))
     return None
 
 
