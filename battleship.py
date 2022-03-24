@@ -67,7 +67,7 @@ Returns: None
 '''
 def mousePressed(data, event, board):
     l = getClickedCell(data,event)
-    print(l[0],l[1])
+    #print(l[0],l[1])
     if board == "user":
         clickUserBoard(data,l[0],l[1])
     #elif board =="computer":
