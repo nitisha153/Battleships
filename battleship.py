@@ -34,6 +34,8 @@ def makeModel(data):
     data["track ships"] = 0
     data["temporary"] = []
     data["winner"] = None
+    data["max_turns"] = 50
+    data["current_turns"] = 0
     #data["computer"] = emptyGrid(data["no.of rows"],data["no.of cols"])
     data["user"] = emptyGrid(data["no.of rows"],data["no.of cols"])
     data["computer"] = addShips(emptyGrid(data["no.of rows"],data["no.of cols"]), data["numShips"])
@@ -318,7 +320,10 @@ def runGameTurn(data, row, col):
     else:
         updateBoard(data,data["computer"],row,col,"user")
     l = getComputerGuess(data["user"])
-    updateBoard(data,data["user"],l[0],l[1],"comp") 
+    updateBoard(data,data["user"],l[0],l[1],"comp")
+    data["current_turns"] += 1
+    if data["current_turns"] == data["max_turns"]:
+        data["winner"] = "draw" 
     return None
 
 
@@ -359,8 +364,10 @@ Returns: None
 def drawGameOver(data, canvas):
     if data["winner"] == "user":
         canvas.create_text(300,50, text = "You Won!", fill ="purple", font = ("Georgia 20 bold"))
-    else:
+    elif data["winner"] == "comp":
         canvas.create_text(300,50, text = "You Lost!", fill ="red", font = ("Georgia 20 bold"))
+    elif data["winner"] == "draw":
+        canvas.create_text(300,50, text = "It's a Draw! Out of moves.", fill ="red", font = ("Georgia 20 bold"))
     return None
 
 
