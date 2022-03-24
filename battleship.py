@@ -283,7 +283,11 @@ Parameters: dict mapping strs to values ; 2D list of ints ; int ; int ; str
 Returns: None
 '''
 def updateBoard(data, board, row, col, player):
-    return
+    if board[row][col] == SHIP_UNCLICKED:
+        board[row][col] = SHIP_CLICKED
+    elif board[row][col] == EMPTY_UNCLICKED:
+        board[row][col] = EMPTY_CLICKED
+    return None
 
 
 '''
@@ -388,5 +392,6 @@ if __name__ == "__main__":
     #test.testGetClickedCell()
     #test.testDrawShip()
     #test.testShipIsValid()
+    test.testUpdateBoard()
     ## Finally, run the simulation to test it manually ##
-    runSimulation(500, 500)
+    #runSimulation(500, 500)
