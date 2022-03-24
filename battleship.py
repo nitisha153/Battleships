@@ -47,7 +47,7 @@ Returns: None
 def makeView(data, userCanvas, compCanvas):
     drawGrid(data,userCanvas,data["user"],True)
     drawShip(data,userCanvas,data["temporary"])
-    drawGrid(data,compCanvas,data["computer"],True)
+    drawGrid(data,compCanvas,data["computer"],False)
     return
 
 
@@ -70,8 +70,9 @@ def mousePressed(data, event, board):
     #print(l[0],l[1])
     if board == "user":
         clickUserBoard(data,l[0],l[1])
-    #elif board =="computer":
-    return
+    elif board =="computer":
+        runGameTurn(data,l[0],l[1])
+    return None
     
 
 #### WEEK 1 ####
@@ -163,8 +164,17 @@ def drawGrid(data, canvas, grid, showShips):
             #canvas.create_rectangle(x1, y1, x2, y2)
             if grid[row][col] == SHIP_UNCLICKED:
                 canvas.create_rectangle(x1,y1,x2,y2,fill = "yellow")
-            else:
+            elif grid[row][col] == EMPTY_UNCLICKED:
                 canvas.create_rectangle(x1,y1,x2,y2,fill = "blue")
+            elif grid[row][col] == SHIP_CLICKED:
+                canvas.create_rectangle(x1,y1,x2,y2,fill = "red")
+            elif grid[row][col] == EMPTY_CLICKED:
+                canvas.create_rectangle(x1,y1,x2,y2,fill = "white")
+            if showShips == False and grid[row][col] == SHIP_UNCLICKED:
+                canvas.create_rectangle(x1,y1,x2,y2,fill = "blue")
+
+
+
     return None
 
 
@@ -296,7 +306,11 @@ Parameters: dict mapping strs to values ; int ; int
 Returns: None
 '''
 def runGameTurn(data, row, col):
-    return
+    if data["computer"][row][col] == (SHIP_UNCLICKED or SHIP_CLICKED):
+        return
+    else:
+        updateBoard(data,data["computer"],row,col,"user") 
+    return None
 
 
 '''
@@ -392,6 +406,6 @@ if __name__ == "__main__":
     #test.testGetClickedCell()
     #test.testDrawShip()
     #test.testShipIsValid()
-    test.testUpdateBoard()
+    #test.testUpdateBoard()
     ## Finally, run the simulation to test it manually ##
-    #runSimulation(500, 500)
+    runSimulation(500, 500)
