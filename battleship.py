@@ -366,13 +366,13 @@ Returns: None
 def drawGameOver(data, canvas):
     if data["winner"] == "user":
         canvas.create_text(300,50, text = "You Won!", fill ="black", font = ("Georgia 20 bold"))
-        canvas.create_text(300,250, text = "Press Enter to restart", fill ="red", font = ("Georgia 20 bold"))
+        canvas.create_text(300,250, text = "Press r to restart", fill ="red", font = ("Georgia 20 bold"))
     elif data["winner"] == "comp":
         canvas.create_text(300,50, text = "You Lost!", fill ="black", font = ("Georgia 20 bold"))
-        canvas.create_text(300,250, text = "Press Enter to restart", fill ="red", font = ("Georgia 20 bold"))
+        canvas.create_text(300,250, text = "Press r to restart", fill ="red", font = ("Georgia 20 bold"))
     elif data["winner"] == "draw":
         canvas.create_text(300,50, text = "It's a Draw! Out of moves.", fill ="black", font = ("Georgia 20 bold"))
-        canvas.create_text(300,250, text = "Press Enter to restart", fill ="red", font = ("Georgia 20 bold"))
+        canvas.create_text(300,250, text = "Press r to restart", fill ="red", font = ("Georgia 20 bold"))
     return None
 
 
