@@ -368,6 +368,7 @@ def drawGameOver(data, canvas):
         canvas.create_text(300,50, text = "You Lost!", fill ="red", font = ("Georgia 20 bold"))
     elif data["winner"] == "draw":
         canvas.create_text(300,50, text = "It's a Draw! Out of moves.", fill ="red", font = ("Georgia 20 bold"))
+    canvas.create_text(300,50, text = "Press Enter to restart", fill ="red", font = ("Georgia 20 bold"))
     return None
 
 
