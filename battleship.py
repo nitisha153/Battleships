@@ -309,7 +309,9 @@ def runGameTurn(data, row, col):
     if data["computer"][row][col] == (SHIP_UNCLICKED or SHIP_CLICKED):
         return
     else:
-        updateBoard(data,data["computer"],row,col,"user") 
+        updateBoard(data,data["computer"],row,col,"user")
+    l = getComputerGuess(data["user"])
+    updateBoard(data,data["user"],l[0],l[1],"comp") 
     return None
 
 
@@ -414,6 +416,6 @@ if __name__ == "__main__":
     #test.testDrawShip()
     #test.testShipIsValid()
     #test.testUpdateBoard()
-    test.testGetComputerGuess()
+    #test.testGetComputerGuess()
     ## Finally, run the simulation to test it manually ##
-    #runSimulation(500, 500)
+    runSimulation(500, 500)
